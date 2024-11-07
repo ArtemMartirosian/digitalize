@@ -10,7 +10,7 @@ export const ContactsMail = ({ firstName, lastName, email, phoneNumber, message 
   return (
     <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "16px" }}>
       <p>
-        First name: <b>{firstName}</b>
+        First nameeee: <b>{firstName}</b>
       </p>
       <p>
         Last name: <b>{lastName}</b>

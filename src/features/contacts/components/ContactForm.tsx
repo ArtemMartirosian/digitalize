@@ -8,6 +8,9 @@ import { contactsDefaultValues, contactsSchema, ContactsSchema } from "../schema
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { sendEmail } from "../actions/send-email";
+import { toast } from "sonner";
+import { Loading } from "@/components/Loading";
 
 export const ContactForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -17,8 +20,10 @@ export const ContactForm = () => {
   });
 
   const onSubmit = form.handleSubmit((values: ContactsSchema) => {
-    startTransition(() => {
-      console.log(values);
+    startTransition(async () => {
+      const { error, success } = await sendEmail(values);
+      console.log(success);
+      error ? toast.error(error) : toast.success(success);
     });
   });
 
@@ -82,7 +87,7 @@ export const ContactForm = () => {
             </FormItem>
           )}
         />
-        <Button>Send</Button>
+        <Button disabled={isPending}>Send {isPending && <Loading size={16} />}</Button>
       </form>
     </Form>
   );

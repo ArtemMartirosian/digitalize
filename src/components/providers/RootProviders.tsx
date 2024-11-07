@@ -18,7 +18,7 @@ export const RootProviders = ({ children }: RootProvidersProps) => {
         <GradientShadow position="top" />
         <Navbar />
         <ThemeToggler />
-        <section className="h-full pb-8 mx-auto">{children}</section>
+        <section className="mx-auto h-full pb-8">{children}</section>
         <Footer />
         <GradientShadow position="bottom" />
         <SonnerProvider />

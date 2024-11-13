@@ -1,13 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { About } from "@prisma/client";
@@ -15,11 +9,7 @@ import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { postAbout } from "../actions/post-about";
-import {
-  aboutSchema,
-  AboutSchema,
-  getAboutDefaultValues,
-} from "../schemas/about-schema";
+import { aboutSchema, AboutSchema, getAboutDefaultValues } from "../schemas/about-schema";
 import { Loading } from "@/components/Loading";
 
 interface Props {
@@ -43,8 +33,8 @@ export const DashboardAboutForm = ({ about }: Props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={onSubmit} className=" w-full flex flex-col gap-4">
-        <div className=" w-full grid grid-cols-3 gap-4">
+      <form onSubmit={onSubmit} className="flex w-full flex-col gap-4">
+        <div className="grid w-full grid-cols-3 gap-4">
           <FormField
             control={form.control}
             name="about_en"
@@ -54,7 +44,7 @@ export const DashboardAboutForm = ({ about }: Props) => {
                   <Textarea
                     disabled={isPending}
                     {...field}
-                    rows={5}
+                    rows={10}
                     placeholder="About Digitalize EN"
                   />
                 </FormControl>
@@ -71,7 +61,7 @@ export const DashboardAboutForm = ({ about }: Props) => {
                   <Textarea
                     disabled={isPending}
                     {...field}
-                    rows={5}
+                    rows={10}
                     placeholder="About Digitalize RU"
                   />
                 </FormControl>
@@ -88,7 +78,7 @@ export const DashboardAboutForm = ({ about }: Props) => {
                   <Textarea
                     disabled={isPending}
                     {...field}
-                    rows={5}
+                    rows={10}
                     placeholder="About Digitalize AM"
                   />
                 </FormControl>
@@ -97,7 +87,7 @@ export const DashboardAboutForm = ({ about }: Props) => {
             )}
           />
         </div>
-        <Button className=" font-semibold" disabled={isPending}>
+        <Button className="font-semibold" disabled={isPending}>
           Save {isPending && <Loading />}
         </Button>
       </form>

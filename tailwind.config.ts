@@ -91,6 +91,8 @@ const config = {
       gridTemplateColumns: {
         "dashboard-layout": "220px 1fr",
         "minmax-128": "repeat(auto-fill, minmax(128px, 1fr))",
+        "minmax-256": "repeat(auto-fill, minmax(256px, 1fr))",
+        "minmax-320": "repeat(auto-fill, minmax(320px, 1fr))",
       },
     },
   },

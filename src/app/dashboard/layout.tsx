@@ -18,7 +18,6 @@ interface Props {
 
 export default async function DashboardLayout({ children }: Props) {
   const session = await auth();
-
   return (
     <ClientSessionProvider session={session}>
       <html lang="en" suppressHydrationWarning>

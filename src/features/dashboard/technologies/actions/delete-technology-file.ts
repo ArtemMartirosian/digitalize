@@ -1,15 +1,14 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { UTApi } from "uploadthing/server";
+import { utapiDeleteFiles } from "@/lib/utapi-delete-files";
 
 export const deleteTechnologyFile = async (id: string, fileKey: string) => {
   try {
     const deletedFile = await db.technology.delete({ where: { id } });
     if (!deletedFile) return { error: "Failed to delete file", deletedFile: null, success: null };
 
-    const utapi = new UTApi();
-    await utapi.deleteFiles(fileKey);
+    await utapiDeleteFiles(fileKey);
 
     return { success: "File has been deleted successfully", deletedFile, error: null };
   } catch (error) {

@@ -25,11 +25,7 @@ export const useCreateTechnology = () => {
         // Add the newly uploaded file to the cache (Assuming uploadedFile contains id, image, imageKey)
         const updatedTechnologies = [
           ...oldData.data, // This assumes that `oldData` contains an array of technologies in `data`
-          {
-            id: data.uploadedFile?.id, // The ID of the newly uploaded file
-            image: data.uploadedFile?.image, // The image URL of the newly uploaded file
-            fileKey: data.uploadedFile?.imageKey, // The file key (if relevant)
-          },
+          data.uploadedFile,
         ];
 
         // Return the updated data with the new file added to the list of technologies

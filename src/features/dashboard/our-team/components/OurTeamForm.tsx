@@ -1,62 +1,105 @@
 "use client";
 
+import { Loading } from "@/components/Loading";
 import { Button } from "@/components/ui/button";
-import { UploadButton, useUploadThing } from "@/utils/uploadthing";
-import Image from "next/image";
-import { ChangeEvent, useRef, useState } from "react";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { useCreateNewTeamMember } from "../hooks/mutations/useCreateNewTeamMember";
+import { teamDefaultValues, teamSchema, TeamSchema } from "../schemas/teamSchema";
+import { TeamUploadFile } from "./TeamUploadFile";
 
 export const OurTeamForm = () => {
-  const [files, setFiles] = useState<File[] | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const { startUpload } = useUploadThing("imageUploader");
-  const [uploadedFile, setUploadedFile] = useState<string>("");
+  const [isPending, startTransition] = useTransition();
+  const { mutateAsync } = useCreateNewTeamMember();
+  const [file, setFile] = useState<string | null>(null);
+  const [fileKey, setFileKey] = useState<string | null>(null);
 
-  const fileHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const newFiles = e.target.files;
-    if (!newFiles) return null;
-    const filesArray = Array.from(newFiles);
-    setFiles(filesArray);
-  };
+  const form = useForm<TeamSchema>({
+    resolver: zodResolver(teamSchema),
+    defaultValues: teamDefaultValues,
+  });
 
-  const onUpload = async () => {
-    if (!files) return;
-    const data = await startUpload(files);
-    if (!data) {
-      toast.error("Failed to upload");
-      return null;
-    }
-    let fileUrl = "";
-    data.forEach(item => {
-      fileUrl = item.url;
+  const onSubmit = form.handleSubmit((values: TeamSchema) => {
+    startTransition(async () => {
+      if (!file) {
+        toast.error("Please choose a file");
+        return;
+      }
+      if (!fileKey) {
+        toast.error("File key is missing");
+        return;
+      }
+      const { success } = await mutateAsync({ values, image: file, imageKey: fileKey });
+      if (success) {
+        form.reset();
+        setFile(null);
+        setFileKey(null);
+      }
     });
-    setUploadedFile(fileUrl);
-  };
+  });
 
   return (
-    <div>
-      {/* <input ref={inputRef} type="file" className="hidden" onChange={fileHandler} />
-      <Button onClick={() => inputRef?.current?.click()}>Choose a file</Button>
-      {!!files && (
-        <div className="">
-          <Image src={uploadedFile} alt="" width={128} height={128} />
-          <Button onClick={onUpload}>Upload</Button>
-        </div>
-      )} */}
-
-      <UploadButton
-        endpoint="imageUploader"
-        onClientUploadComplete={res => {
-          const fileUrl = res.pop()?.url;
-          if (fileUrl) {
-            setUploadedFile(fileUrl);
-            toast.success("Upload Completed");
-          }
-        }}
-        onUploadError={(error: Error) => {
-          toast.error(error.message);
-        }}
-      />
+    <div className="flex w-full max-w-3xl gap-16">
+      <TeamUploadFile file={file} fileKey={fileKey} setFile={setFile} setFileKey={setFileKey} />
+      <Form {...form}>
+        <form onSubmit={onSubmit} className="flex h-fit w-full max-w-screen-sm flex-col gap-3">
+          <div className="grid w-full grid-cols-2 gap-3">
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input {...field} placeholder="First name" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input {...field} placeholder="Last name" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <FormField
+            control={form.control}
+            name="professionPosition"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input {...field} placeholder="Profession position" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="companyPosition"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input {...field} placeholder="Position at company" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button disabled={isPending}>Add member {isPending && <Loading size={16} />}</Button>
+        </form>
+      </Form>
     </div>
   );
 };

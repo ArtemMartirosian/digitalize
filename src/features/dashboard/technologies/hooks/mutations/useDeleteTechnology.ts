@@ -4,7 +4,7 @@ import { deleteTechnologyFile } from "../../actions/delete-technology-file";
 
 export const useDeleteTechnology = () => {
   const qc = useQueryClient();
-  const queryKey: QueryKey = ["technologies"]; // Query key for the list of technologies
+  const queryKey: QueryKey = ["technologies"];
 
   return useMutation({
     mutationKey: queryKey,
@@ -13,8 +13,6 @@ export const useDeleteTechnology = () => {
 
     onSuccess: async data => {
       if (data.error) {
-        console.log(data.error);
-        toast.error(data.error);
         throw new Error(data.error);
       }
 

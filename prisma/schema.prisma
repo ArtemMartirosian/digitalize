@@ -86,9 +86,22 @@ model About {
 model Service {
   id        String   @id @default(cuid())
   name      String   @unique
-  slug      String   @unique
+  price     String
+  features  String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("services")
+}
+
+model Team {
+  id                 String  @id @default(cuid())
+  firstName          String
+  lastName           String
+  professionPosition String
+  companyPosition    String?
+  image              String
+  imageKey           String
+
+  @@map("team")
 }

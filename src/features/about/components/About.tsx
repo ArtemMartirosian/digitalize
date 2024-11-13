@@ -1,20 +1,22 @@
 import { SubTitle } from "@/components/SubTitle";
 import { Translate } from "@/components/Translate";
-import { db } from "@/lib/db";
+import { fetchAbout } from "../actions/fetchAbout";
 
 export const About = async () => {
-  const about = await db.about.findFirst();
-
-  if (!about) return null;
-
-  const { about_am, about_en, about_ru } = about;
+  const { error, about } = await fetchAbout();
 
   return (
     <section className="flex w-full flex-col gap-4 text-center">
       <SubTitle>About us</SubTitle>
-      <p className="whitespace-pre-line text-start">
-        <Translate translations={{ am: about_am, en: about_en, ru: about_ru }} />
-      </p>
+      {error !== null && about === null ? (
+        <p>{error}</p>
+      ) : (
+        <p className="whitespace-pre-line text-start">
+          <Translate
+            translations={{ am: about.about_am, en: about.about_en, ru: about.about_ru }}
+          />
+        </p>
+      )}
     </section>
   );
 };

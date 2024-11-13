@@ -1,10 +1,5 @@
-import { OurTeamForm } from "@/features/dashboard/our-team/components/OurTeamForm";
-import { db } from "@/lib/db";
+import { OurTeamTemplate } from "@/features/dashboard/our-team/components/OurTeamTemplate";
 
 export default async function OurTeamPage() {
-  return (
-    <div>
-      <OurTeamForm />
-    </div>
-  );
+  return <OurTeamTemplate />;
 }

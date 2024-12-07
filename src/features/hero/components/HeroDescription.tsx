@@ -1,16 +1,14 @@
 "use client";
 
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
+import { LocaleType } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { Barlow } from "next/font/google";
 import { useRef, useState } from "react";
 import { v4 } from "uuid";
 import { SYNONYMS } from "../constants/synonyms";
-import { LocaleType } from "@/i18n/routing";
 
-const barlow = Barlow({ subsets: ["latin"], weight: ["600", "700", "900"] });
 
 export const HeroDescription = () => {
   const [currentSynonymIndex, setCurrentSynonymIndex] = useState<number>(0);
@@ -36,8 +34,7 @@ export const HeroDescription = () => {
   return (
     <motion.p
       className={cn(
-        "text-2xl font-bold text-muted-foreground md:text-3xl lg:text-4xl",
-        barlow.className
+        "font-bold text-muted-foreground text-[clamp(24px,_3vw,_64px)]",
       )}
       initial={{ opacity: 0, y: 25, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}

@@ -2,9 +2,12 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { ArrowRight, MoveRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import {useTranslations} from "next-intl";
 
 export const HeroGetStartedButton = () => {
+
+    const t = useTranslations("");
   return (
     <motion.button
       initial={{ "--x": "100%", y: 50, opacity: 0, scale: 0.8 }}
@@ -43,7 +46,7 @@ export const HeroGetStartedButton = () => {
       )}
     >
       <span className="linear-mask relative inline-flex h-full w-full items-center gap-2">
-        ✨ Get started now <ArrowRight size={16} />
+        ✨ {t("startedNow")} <ArrowRight size={16} />
       </span>
       <span className="linear-overlay absolute inset-0 block rounded-full p-px" />
     </motion.button>

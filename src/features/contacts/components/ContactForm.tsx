@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { sendEmail } from "../actions/send-email";
 import { toast } from "sonner";
 import { Loading } from "@/components/Loading";
+import {useTranslations} from "next-intl";
 
 export const ContactForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -18,6 +19,7 @@ export const ContactForm = () => {
     resolver: zodResolver(contactsSchema),
     defaultValues: contactsDefaultValues,
   });
+  const t = useTranslations("form");
 
   const onSubmit = form.handleSubmit((values: ContactsSchema) => {
     startTransition(async () => {
@@ -37,7 +39,7 @@ export const ContactForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input {...field} placeholder="First name" />
+                  <Input {...field} placeholder={t("firstName")} />
                 </FormControl>
               </FormItem>
             )}
@@ -48,7 +50,7 @@ export const ContactForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input {...field} placeholder="Last name" />
+                  <Input {...field} placeholder={t("lastName")} />
                 </FormControl>
               </FormItem>
             )}
@@ -59,7 +61,7 @@ export const ContactForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="email" {...field} placeholder="Email address" />
+                  <Input type="email" {...field} placeholder={t("emailAddress")} />
                 </FormControl>
               </FormItem>
             )}
@@ -70,7 +72,7 @@ export const ContactForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="tel" {...field} placeholder="Phone number" />
+                  <Input type="tel" {...field} placeholder={t("phoneNumber")} />
                 </FormControl>
               </FormItem>
             )}
@@ -82,12 +84,12 @@ export const ContactForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea rows={5} {...field} placeholder="Enter your message" />
+                <Textarea rows={5} {...field} placeholder={t("enterMessage")} />
               </FormControl>
             </FormItem>
           )}
         />
-        <Button disabled={isPending}>Send {isPending && <Loading size={16} />}</Button>
+        <Button disabled={isPending}>{t("send")} {isPending && <Loading size={16} />}</Button>
       </form>
     </Form>
   );

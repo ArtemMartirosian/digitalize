@@ -11,7 +11,7 @@ import { LANGUAGES } from "@/constants/languages";
 import { usePathname } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { LanguagesIcon } from "lucide-react";
-import { useLocale } from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
@@ -21,6 +21,7 @@ export const Languages = () => {
   const router = useRouter();
   const pathname = usePathname();
   const activeLocale = useLocale();
+  const t = useTranslations("languages");
 
   const switchLocaleHandler = (nextLocale: string) => {
     const origin = window.location.origin;
@@ -55,7 +56,7 @@ export const Languages = () => {
                   height={20}
                   className="rounded-full border border-foreground/70"
                 />
-                <span className="font-semibold">{item.name}</span>
+                <span className="font-semibold">{t(item.name)}</span>
               </DropdownMenuItem>
             )}
           />

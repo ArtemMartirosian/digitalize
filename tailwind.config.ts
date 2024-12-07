@@ -94,6 +94,9 @@ const config = {
         "minmax-256": "repeat(auto-fill, minmax(256px, 1fr))",
         "minmax-320": "repeat(auto-fill, minmax(320px, 1fr))",
       },
+      screens: {
+        sm: { max: "639px" }
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

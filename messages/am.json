@@ -5,5 +5,26 @@
   "hero": {
     "first_chunk": "Ձեր",
     "second_chunk": "կայքը կյանքի կոչել"
-  }
+  },
+  "languages": {
+    "Armenian": "Հայերեն",
+    "Russian": "Ռուսերեն",
+    "English": "Անգլերեն"
+  },
+  "about": "Մեր մասին",
+  "services": "Ծառայություններ",
+  "team": "Մեր թիմը",
+  "ourPortfolio": "Մեր պորտֆոլիոն",
+  "contact": "Կապ մեզ հետ",
+  "startedNow": "Սկսեք հիմա",
+  "form": {
+    "firstName": "Անուն",
+    "lastName": "Ազգանուն",
+    "emailAddress": "Էլփոստի հասցե",
+    "phoneNumber": "Հեռախոսահամար",
+    "enterMessage": "Գրեք ձեր հաղորդագրությունը",
+    "send": "Ուղարկել"
+  },
+  "rightsReserved": "Բոլոր իրավունքները պաշտպանված են",
+  "menu": "Մենյու"
 }

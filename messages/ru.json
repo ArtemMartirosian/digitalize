@@ -5,5 +5,26 @@
   "hero": {
     "first_chunk": "Воплощение вашего",
     "second_chunk": "веб-сайта в жизнь"
-  }
+  },
+  "languages": {
+    "Armenian": "Армянский",
+    "Russian": "Русский",
+    "English": "Английский"
+  },
+  "about": "О нас",
+  "services": "Услуги",
+  "team": "Наша команда",
+  "ourPortfolio": "Наше портфолио",
+  "contact": "Связаться с нами",
+  "startedNow": "Начните сейчас",
+  "form": {
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "emailAddress": "Адрес электронной почты",
+    "phoneNumber": "Номер телефона",
+    "enterMessage": "Введите ваше сообщение",
+    "send": "Отправлять"
+  },
+  "rightsReserved": "Все права защищены",
+  "menu": "Меню"
 }

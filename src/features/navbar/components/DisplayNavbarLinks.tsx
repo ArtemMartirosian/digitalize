@@ -2,6 +2,7 @@ import { ListItems } from "@/components/ListItems";
 import { NAVBAR_LINKS } from "@/constants/navbar-links";
 import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
+import {useTranslations} from "next-intl";
 
 interface Props {
   orientation: "vertical" | "horizontal";
@@ -9,6 +10,7 @@ interface Props {
 
 export const DisplayNavbarLinks = ({ orientation }: Props) => {
   const isVertical = orientation === "vertical";
+    const t = useTranslations("");
   return (
     <ul
       className={cn("inline-flex items-center gap-x-4 gap-y-1", {
@@ -25,7 +27,7 @@ export const DisplayNavbarLinks = ({ orientation }: Props) => {
                 "flex h-full w-full items-center": isVertical,
               })}
             >
-              {item.name}
+              {t(item.name)}
             </Link>
           </li>
         )}

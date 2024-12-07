@@ -20,14 +20,14 @@ export const TeamMemberCard = ({ item }: Props) => {
             />
           </div>
         </TooltipTrigger>
-        <TooltipContent className="flex flex-col gap-1 text-center">
-          <p className="text-lg font-bold">
+        <TooltipContent className="flex flex-col gap-1 text-center p-3">
+          <p className="text-lg font-bold leading-none uppercase">
             {item.firstName} {item.lastName}
           </p>
           <span className="text-sm font-semibold text-background/70">
             {item.professionPosition}
           </span>
-          {item.companyPosition && (
+          {item.companyPosition && (item.companyPosition !== item.professionPosition) && (
             <span className="text-sm font-semibold text-background/70">{item.companyPosition}</span>
           )}
         </TooltipContent>

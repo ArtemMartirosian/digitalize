@@ -5,5 +5,26 @@
   "hero": {
     "first_chunk": "Bringing Your",
     "second_chunk": "Website to Life"
-  }
+  },
+  "languages": {
+    "Armenian": "Armenian",
+    "Russian": "Russian",
+    "English": "English"
+  },
+  "about": "About Us",
+  "services": "Services",
+  "team": "Our team",
+  "ourPortfolio": "Our Portfolio",
+  "contact": "Contact us",
+  "startedNow": "Get started now",
+  "form": {
+    "firstName": "First name",
+    "lastName": "Last name",
+    "emailAddress": "Email address",
+    "phoneNumber": "Phone number",
+    "enterMessage": "Enter your message",
+    "send": "Send"
+  },
+  "rightsReserved": "All rights reserved",
+  "menu": "Menu"
 }

@@ -1,24 +1,22 @@
-import { PathnamesType } from "@/navigation";
-
-export const NAVBAR_LINKS: { name: string; href: PathnamesType }[] = [
+export const NAVBAR_LINKS: { name: string; href: any }[] = [
   {
     href: "/about",
-    name: "About",
+    name: "about",
   },
   {
     href: "/services",
-    name: "Services",
+    name: "services",
   },
   {
     href: "/portfolio",
-    name: "Portfolio",
+    name: "ourPortfolio",
   },
   {
     href: "/our-team",
-    name: "Team",
+    name: "team",
   },
   {
     href: "/contacts",
-    name: "Contacts",
+    name: "contact",
   },
 ];

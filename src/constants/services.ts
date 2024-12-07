@@ -11,4 +11,15 @@ export const SERVICES: ServiceDataProps[] = [
     price: 700000,
     duration: "2-3 months",
   },
+  {
+    name: "Corporate Website",
+    price: 450000,
+    duration: "2 months",
+  },
+  {
+    name: "Web Application Development",
+    price: 900000,
+    duration: "3-6 months",
+  },
 ];
+

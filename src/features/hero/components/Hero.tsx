@@ -6,7 +6,7 @@ import { ParticleWrapper } from "./ParticleWrapper";
 
 export const Hero = () => {
   return (
-    <div className="relative flex h-dvh w-full flex-col items-center justify-center gap-8 overflow-hidden">
+    <div className="relative flex h-dvh max-h-[960px] w-full flex-col items-center justify-center gap-8 overflow-hidden">
       <div className="flex flex-col items-center gap-2.5 px-3 text-center">
         <HeroTitle />
         <HeroDescription />

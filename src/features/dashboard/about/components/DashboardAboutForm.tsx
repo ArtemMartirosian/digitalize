@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { About } from "@prisma/client";
@@ -34,17 +34,19 @@ export const DashboardAboutForm = ({ about }: Props) => {
   return (
     <Form {...form}>
       <form onSubmit={onSubmit} className="flex w-full flex-col gap-4">
-        <div className="grid w-full grid-cols-3 gap-4">
+        <div className="flex flex-col w-full gap-4">
           <FormField
             control={form.control}
             name="about_en"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>English</FormLabel>
                 <FormControl>
                   <Textarea
                     disabled={isPending}
                     {...field}
-                    rows={10}
+                    rows={12}
+                    className="bg-muted-foreground/20"
                     placeholder="About Digitalize EN"
                   />
                 </FormControl>
@@ -57,11 +59,13 @@ export const DashboardAboutForm = ({ about }: Props) => {
             name="about_ru"
             render={({ field }) => (
               <FormItem>
+                 <FormLabel>Russian</FormLabel>
                 <FormControl>
                   <Textarea
                     disabled={isPending}
                     {...field}
-                    rows={10}
+                    rows={12}
+                    className="bg-muted-foreground/20"
                     placeholder="About Digitalize RU"
                   />
                 </FormControl>
@@ -74,11 +78,13 @@ export const DashboardAboutForm = ({ about }: Props) => {
             name="about_am"
             render={({ field }) => (
               <FormItem>
+                <FormLabel>Armenian</FormLabel>
                 <FormControl>
                   <Textarea
                     disabled={isPending}
                     {...field}
-                    rows={10}
+                    rows={12}
+                    className="bg-muted-foreground/20"
                     placeholder="About Digitalize AM"
                   />
                 </FormControl>

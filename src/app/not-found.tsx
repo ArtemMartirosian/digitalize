@@ -3,7 +3,6 @@
 import { NextThemeProvider } from "@/components/providers/NextThemeProvider";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
 import { Poppins, Quicksand } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";

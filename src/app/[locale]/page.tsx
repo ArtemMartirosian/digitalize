@@ -7,7 +7,7 @@ import { OurTeam } from "@/features/our-team/components/OurTeam";
 import { Services } from "@/features/services/components/Services";
 import { Technologies } from "@/features/technologies/components/Technologies";
 import { Suspense } from "react";
-import {Portfolio} from "@/features/portfolio/components/Portfolio";
+import { Portfolio } from "@/features/portfolio/components/Portfolio";
 
 export default async function Home() {
   return (
@@ -24,7 +24,7 @@ export default async function Home() {
         <VerticalSectionDivider />
         <OurTeam />
         <VerticalSectionDivider />
-        <Portfolio/>
+        <Portfolio />
         <VerticalSectionDivider />
         <Contacts />
       </section>

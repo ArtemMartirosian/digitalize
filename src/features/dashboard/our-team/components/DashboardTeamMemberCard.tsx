@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Loading } from "@/components/Loading";
+import { useState } from "react";
+import { DeleteDialog } from "@/components/DeleteDialog";
 
 interface Props {
   item: Team;
@@ -14,23 +16,34 @@ interface Props {
 
 export const DashboardTeamMemberCard = ({ item }: Props) => {
   const { mutateAsync, isPending } = useDeleteMember();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const onDeleteMember = async () => {
     await mutateAsync({ id: item.id, imageKey: item.imageKey });
   };
 
+  const onOpen = () => setIsOpen(true);
+  const onClose = () => setIsOpen(false);
+
   return (
     <div
       className={cn(
-        "relative flex max-w-xs flex-col items-center gap-1 rounded-md border bg-muted p-4",
+        "group relative flex max-w-xs flex-col items-center gap-1 rounded-md border bg-muted p-4",
         isPending && "opacity-80 backdrop-brightness-50"
       )}
     >
+      <DeleteDialog
+        onClose={onClose}
+        onDelete={onDeleteMember}
+        isOpen={isOpen}
+        isPending={isPending}
+        title={`Delete team member ${item.firstName} ${item.lastName}`}
+      />
       <Button
         variant="destructive"
         size="icon"
-        className="absolute right-2 top-2 z-10 rounded-full"
-        onClick={onDeleteMember}
+        className="absolute right-2 top-2 z-10 rounded-full opacity-0 transition-all group-hover:opacity-100"
+        onClick={onOpen}
       >
         {isPending ? <Loading size={16} /> : <X size={16} />}
       </Button>
@@ -46,7 +59,9 @@ export const DashboardTeamMemberCard = ({ item }: Props) => {
         {item.firstName} {item.lastName}
       </p>
       <span className="text-sm font-semibold text-muted-foreground">{item.professionPosition}</span>
-      <span className="text-sm font-semibold text-muted-foreground">{item.companyPosition}</span>
+      {item.companyPosition !== item.professionPosition && (
+        <span className="text-sm font-semibold text-muted-foreground">{item.companyPosition}</span>
+      )}
     </div>
   );
 };

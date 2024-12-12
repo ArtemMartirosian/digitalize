@@ -8,6 +8,8 @@ import { Service } from "@prisma/client";
 import { Check, X } from "lucide-react";
 import { useDeleteServiceMutation } from "../hooks/mutations/useDeleteServiceMutation";
 import { ServiceEditDialog } from "./ServiceEditDialog";
+import { useState } from "react";
+import { DeleteDialog } from "@/components/DeleteDialog";
 
 interface Props {
   item: Service;
@@ -15,19 +17,30 @@ interface Props {
 
 export const ServiceCard = ({ item }: Props) => {
   const { mutateAsync, isPending } = useDeleteServiceMutation();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const onDelete = async () => {
     await mutateAsync(item.id);
   };
 
+  const onOpen = () => setIsOpen(true);
+  const onClose = () => setIsOpen(false);
+
   return (
     <div className="relative flex w-full flex-col items-center justify-between gap-4 rounded-sm border bg-muted p-4 shadow-md">
+      <DeleteDialog
+        onClose={onClose}
+        onDelete={onDelete}
+        isOpen={isOpen}
+        isPending={isPending}
+        title={`Delete service ${item.name}`}
+      />
       <Button
         size="icon"
         variant="destructive"
         className="absolute -right-2 -top-2 rounded-full"
         disabled={isPending}
-        onClick={onDelete}
+        onClick={onOpen}
       >
         {isPending ? <Loading size={16} /> : <X size={16} />}
       </Button>

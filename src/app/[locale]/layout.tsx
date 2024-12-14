@@ -5,9 +5,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 import "../globals.css";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { geistSans } from "../fonts/font";
 
 interface Props {
   children: ReactNode;
@@ -27,7 +25,7 @@ export default async function LocaleLayout({ children, params: { locale } }: Pro
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={geistSans.className}>
         <NextIntlClientProvider messages={messages}>
           <main className="mx-auto min-h-dvh w-full max-w-[1920px]">
             <RootProviders>{children}</RootProviders>

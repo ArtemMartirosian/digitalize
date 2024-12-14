@@ -15,7 +15,10 @@ export const ServicesCarousel = ({ services }: Props) => {
           <ListItems
             items={services}
             render={item => (
-              <CarouselItem key={item.name} className="sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+              <CarouselItem
+                key={item.name}
+                className="ml-2 min-w-72 basis-1/2 lg:basis-1/3 xl:basis-1/4"
+              >
                 <ServiceCard item={item} />
               </CarouselItem>
             )}

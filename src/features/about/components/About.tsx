@@ -11,7 +11,7 @@ export const About = async () => {
       {error !== null && about === null ? (
         <p>{error}</p>
       ) : (
-        <p className="whitespace-pre-line text-start">
+        <p className="whitespace-pre-line text-start text-muted-foreground">
           <Translate
             translations={{ am: about.about_am, en: about.about_en, ru: about.about_ru }}
           />

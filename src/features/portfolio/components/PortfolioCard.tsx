@@ -1,48 +1,39 @@
-import React from 'react';
-import {Team} from "@prisma/client";
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
-import Image from "next/image";
+"use client";
+
+import React from "react";
+import { Team } from "@prisma/client";
 import Link from "next/link";
-import { HoverableCard } from '@/components/HoverableCard';
+import { motion } from "framer-motion";
 
 interface Props {
-    item: Team;
+  item: Team;
+  index: number;
 }
 
-const PortfolioCard = ({ item }: Props) => {
-
-    return (
-        <TooltipProvider>
-            <Tooltip delayDuration={200}>
-                <TooltipTrigger asChild>
-                    <HoverableCard className='not-hover-item transition-all duration-500'><Link href='https://www.youtube.com/' target='_blank' className="relative w-full flex flex-col gap-2 h-fit rounded-md overflow-hidden bg-primary-foreground opacity-[0.95] p-2">
-                        <div className="relative w-full aspect-video" >
-                            <Image
-                                src={item.image}
-                                alt={`${item.firstName} ${item.lastName}`}
-                                fill
-                                className=" border object-cover"
-                            />
-                        </div>
-                        <div className="w-full flex flex-col items-center gap-1 text-center">
-                        <p>Project name</p>
-                        </div>
-                    </Link></HoverableCard>
-                </TooltipTrigger>
-                <TooltipContent   className="flex flex-col gap-1 text-center">
-                    <p className="text-lg font-bold">
-                       Languages : Next js , Laravel 
-                    </p>
-                    <span className="text-sm font-semibold text-background/70">
-           Company :  {item.professionPosition}
-          </span>
-                    {item.companyPosition && (
-                        <span className="text-sm font-semibold text-background/70">{item.companyPosition}</span>
-                    )}
-                </TooltipContent>
-            </Tooltip>
-        </TooltipProvider>
-    );
+const PortfolioCard = ({ item, index }: Props) => {
+  return (
+    <motion.div
+      initial={{ y: 15, scale: 0.8, borderStyle: "solid", opacity: 0 }}
+      whileInView={{
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        borderStyle: "dashed",
+        transition: { delay: 0.1 * index, type: "spring" },
+      }}
+      viewport={{ once: true }}
+      className="h-fit w-full"
+    >
+      <Link
+        href="/"
+        className="relative flex items-center justify-center overflow-hidden border border-dashed border-muted p-8 transition-all hover:border-solid hover:border-violet-500/30 hover:bg-violet-500/20"
+      >
+        <div className="absolute -right-14 -top-14 -z-10 aspect-square size-32 rounded-full bg-violet-700/30"></div>
+        <div className="absolute -bottom-14 -left-14 -z-10 aspect-square size-32 rounded-full bg-purple-700/30"></div>
+        project name
+      </Link>
+    </motion.div>
+  );
 };
 
 export default PortfolioCard;

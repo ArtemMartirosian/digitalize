@@ -45,7 +45,7 @@ export const ServiceCard = ({ item }: Props) => {
         {isPending ? <Loading size={16} /> : <X size={16} />}
       </Button>
       <div className="flex w-full grow flex-col gap-2">
-        <p className="text-2xl font-black uppercase">{item.name}</p>
+        <p className="text-xl font-bold uppercase">{item.name}</p>
         <ul className="flex w-full flex-col gap-1.5">
           <ListItems
             items={item.features}

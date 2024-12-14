@@ -60,13 +60,16 @@
   }
 
   body {
-    @apply bg-background text-foreground overflow-x-hidden;
+    @apply overflow-x-hidden bg-background text-foreground;
   }
 }
 
 .navbar-transition {
-  transition: top 300ms ease-in-out, background 300ms ease-in-out,
-    box-shadow 300ms ease-in-out, backdrop-filter 300ms ease-in-out,
+  transition:
+    top 300ms ease-in-out,
+    background 300ms ease-in-out,
+    box-shadow 300ms ease-in-out,
+    backdrop-filter 300ms ease-in-out,
     border 300ms ease-in-out;
 }
 
@@ -79,7 +82,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-violet-500 rounded-full;
+  @apply rounded-full bg-violet-500;
 }
 
 .text-shadow {
@@ -97,56 +100,72 @@
 }
 
 .radial-gradient {
-  background: radial-gradient(circle at 50% 0%,
+  background: radial-gradient(
+      circle at 50% 0%,
       rgba(var(--radial-gradient-background), 0.05) 0%,
-      transparent 60%) rgba(var(--solid-color-background), 1);
+      transparent 60%
+    )
+    rgba(var(--solid-color-background), 1);
 }
 
 .linear-mask {
-  mask-image: linear-gradient(-75deg,
-      white calc(var(--x) + 20%),
-      transparent calc(var(--x) + 30%),
-      white calc(var(--x) + 100%));
-  -webkit-mask-image: linear-gradient(-75deg,
-      white calc(var(--x) + 20%),
-      transparent calc(var(--x) + 30%),
-      white calc(var(--x) + 100%));
+  mask-image: linear-gradient(
+    -75deg,
+    white calc(var(--x) + 20%),
+    transparent calc(var(--x) + 30%),
+    white calc(var(--x) + 100%)
+  );
+  -webkit-mask-image: linear-gradient(
+    -75deg,
+    white calc(var(--x) + 20%),
+    transparent calc(var(--x) + 30%),
+    white calc(var(--x) + 100%)
+  );
 }
 
 .linear-overlay {
-  background-image: linear-gradient(-75deg,
-      rgba(var(--overlay-color), 0.1) calc(var(--x) + 20%),
-      rgba(var(--overlay-color), 0.5) calc(var(--x) + 25%),
-      rgba(var(--overlay-color), 0.1) calc(var(--x) + 100%));
-  mask: linear-gradient(black, black) content-box, linear-gradient(black, black);
-  -webkit-mask: linear-gradient(black, black) content-box,
+  background-image: linear-gradient(
+    -75deg,
+    rgba(var(--overlay-color), 0.1) calc(var(--x) + 20%),
+    rgba(var(--overlay-color), 0.5) calc(var(--x) + 25%),
+    rgba(var(--overlay-color), 0.1) calc(var(--x) + 100%)
+  );
+  mask:
+    linear-gradient(black, black) content-box,
+    linear-gradient(black, black);
+  -webkit-mask:
+    linear-gradient(black, black) content-box,
     linear-gradient(black, black);
   mask-composite: exclude;
   -webkit-mask-composite: xor;
 }
 
 .hero-gradient {
-  background: linear-gradient(to top,
-      hsl(var(--background)),
-      hsla(var(--linear-bg), 0.9),
-      hsla(var(--linear-bg), 0.8),
-      hsla(var(--linear-bg), 0.7),
-      hsla(var(--linear-bg), 0.6),
-      hsla(var(--linear-bg), 0.5),
-      hsla(var(--linear-bg), 0.4),
-      hsla(var(--linear-bg), 0.3),
-      hsla(var(--linear-bg), 0.2),
-      hsla(var(--linear-bg), 0.1),
-      transparent);
+  background: linear-gradient(
+    to top,
+    hsl(var(--background)),
+    hsla(var(--linear-bg), 0.9),
+    hsla(var(--linear-bg), 0.8),
+    hsla(var(--linear-bg), 0.7),
+    hsla(var(--linear-bg), 0.6),
+    hsla(var(--linear-bg), 0.5),
+    hsla(var(--linear-bg), 0.4),
+    hsla(var(--linear-bg), 0.3),
+    hsla(var(--linear-bg), 0.2),
+    hsla(var(--linear-bg), 0.1),
+    transparent
+  );
 }
 
 .card::before {
   content: "";
   position: absolute;
   inset: 0px;
-  background: radial-gradient(var(--w) circle at var(--x) var(--y),
-      hsl(var(--hue), 100%, 75%),
-      transparent);
+  background: radial-gradient(
+    var(--w) circle at var(--x) var(--y),
+    hsl(var(--hue), 100%, 75%),
+    transparent
+  );
 }
 
 /* Default state: All items have brightness 1 */

@@ -20,7 +20,9 @@ export default async function Home() {
         <VerticalSectionDivider />
         <About />
         <VerticalSectionDivider />
-        <Services />
+        <Suspense fallback={<Loading />}>
+          <Services />
+        </Suspense>
         <VerticalSectionDivider />
         <OurTeam />
         <VerticalSectionDivider />

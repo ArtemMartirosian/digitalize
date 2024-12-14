@@ -60,7 +60,7 @@ export const ServiceCard = ({ item }: Props) => {
       </div>
       <Separator className="bg-muted-foreground" />
       <p className="font-bold">{Number(item.price).toLocaleString()}AMD</p>
-      <ServiceEditDialog id={item.id} />
+      <ServiceEditDialog data={item} />
     </div>
   );
 };

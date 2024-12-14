@@ -7,25 +7,31 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import React from "react";
+import React, { useState } from "react";
 import { ServiceEditForm } from "./ServiceEditForm";
+import { Service } from "@prisma/client";
 
 interface Props {
-  id: string;
+  data: Service;
 }
 
-export const ServiceEditDialog = ({ id }: Props) => {
+export const ServiceEditDialog = ({ data }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onOpen = () => setIsOpen(true);
+  const onClose = () => setIsOpen(false);
+
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button className="w-full">Edit</Button>
-      </DialogTrigger>
+    <Dialog open={isOpen} defaultOpen={isOpen} onOpenChange={onClose}>
+      <Button className="w-full" onClick={onOpen}>
+        Edit
+      </Button>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit</DialogTitle>
           <DialogDescription>Edit and update the service</DialogDescription>
         </DialogHeader>
-        <ServiceEditForm id={id} />
+        <ServiceEditForm data={data} onClose={onClose} />
       </DialogContent>
     </Dialog>
   );

@@ -6,25 +6,25 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useFetchUniqueServiceQuery } from "../hooks/queries/useFetchUniqueServiceQuery";
 import { serviceSchema, ServiceSchema } from "../schemas/service-schema";
 import { ServiceFeauterCard } from "./ServiceFeauterCard";
 import { useState } from "react";
 import { v4 } from "uuid";
 import { ServiceFeatureProps } from "../types/definitions";
 import { useUpdateServiceMutation } from "../hooks/mutations/useUpdateServiceMutation";
+import { Service } from "@prisma/client";
 
 interface Props {
-  id: string;
+  data: Service;
+  onClose: () => void;
 }
 
-export const ServiceEditForm = ({ id }: Props) => {
-  const { data, status, error } = useFetchUniqueServiceQuery(id);
+export const ServiceEditForm = ({ data, onClose }: Props) => {
   const { isPending, mutateAsync } = useUpdateServiceMutation();
   const [featureValue, setFeatureValue] = useState<string>("");
 
   const [features, setFeatures] = useState<ServiceFeatureProps[]>(
-    data?.existingService?.features.map(item => ({ id: v4(), feature: item })) || []
+    data.features.map(item => ({ id: v4(), feature: item })) || []
   );
 
   const onAddFeature = () => {
@@ -36,19 +36,15 @@ export const ServiceEditForm = ({ id }: Props) => {
   const form = useForm<ServiceSchema>({
     resolver: zodResolver(serviceSchema),
     defaultValues: {
-      name: data?.existingService?.name || "",
-      price: data?.existingService?.price || "",
+      name: data.name || "",
+      price: data.price || "",
     },
   });
 
   const onSubmit = form.handleSubmit(async (values: ServiceSchema) => {
-    if (!data?.existingService) return;
-    await mutateAsync({ id: data.existingService.id, values, features });
+    if (!data) return;
+    await mutateAsync({ id: data.id, values, features }, { onSuccess: () => onClose() });
   });
-
-  if (status === "pending") return <Loading />;
-  if (status === "error") return <p>{error.message}</p>;
-  if (status === "success" && !data?.existingService) return null;
 
   return (
     <Form {...form}>

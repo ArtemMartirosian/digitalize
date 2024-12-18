@@ -36,7 +36,7 @@ export const useCreateServiceMutation = () => {
       toast.success(data.success);
     },
     onError: error => {
-      toast.error("Failed to add new team member");
+      toast.error("Failed to add new service");
     },
   });
 };

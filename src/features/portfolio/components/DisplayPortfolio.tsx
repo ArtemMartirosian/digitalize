@@ -1,4 +1,3 @@
-import React from "react";
 import { ListItems } from "@/components/ListItems";
 import { fetchTeam } from "@/features/dashboard/our-team/actions/fetch-team";
 import PortfolioCard from "@/features/portfolio/components/PortfolioCard";

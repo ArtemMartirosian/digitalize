@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import { Separator } from "@/components/ui/separator";
 import { Team } from "@prisma/client";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface Props {
   item: Team;
@@ -13,12 +13,11 @@ interface Props {
 const PortfolioCard = ({ item, index }: Props) => {
   return (
     <motion.div
-      initial={{ y: 15, scale: 0.8, borderStyle: "solid", opacity: 0 }}
+      initial={{ y: 15, scale: 0.8, opacity: 0 }}
       whileInView={{
         y: 0,
         scale: 1,
         opacity: 1,
-        borderStyle: "dashed",
         transition: { delay: 0.1 * index, type: "spring" },
       }}
       viewport={{ once: true }}

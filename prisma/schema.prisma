@@ -95,13 +95,25 @@ model Service {
 }
 
 model Team {
-  id                 String  @id @default(cuid())
+  id                 String   @id @default(cuid())
   firstName          String
   lastName           String
   professionPosition String
   companyPosition    String?
   image              String
   imageKey           String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 
   @@map("team")
+}
+
+model Portfolio {
+  id        String   @id @default(cuid())
+  name      String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("portfolio")
 }

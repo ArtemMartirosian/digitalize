@@ -1,11 +1,11 @@
 import { SubTitle } from "@/components/SubTitle";
 import { DisplayTeamMembers } from "./DisplayTeamMembers";
-import {useTranslations} from "next-intl";
+import { useTranslations } from "next-intl";
 
 export const OurTeam = () => {
-    const t = useTranslations("");
+  const t = useTranslations("");
   return (
-    <section className=" w-full flex flex-col items-center gap-4">
+    <section className="flex w-full flex-col items-center gap-6">
       <SubTitle>{t("team")}</SubTitle>
       <DisplayTeamMembers />
     </section>

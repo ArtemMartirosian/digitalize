@@ -8,7 +8,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { ReactNode } from "react";
 import { extractRouterConfig } from "uploadthing/server";
 import "../globals.css";
-import { geistSans } from "../fonts/font";
+import { geistSans, space } from "../fonts/font";
 
 interface Props {
   children: ReactNode;
@@ -19,7 +19,7 @@ export default async function DashboardLayout({ children }: Props) {
   return (
     <ClientSessionProvider session={session}>
       <html lang="en" suppressHydrationWarning>
-        <body className={geistSans.className}>
+        <body className={space.className}>
           <section className="mx-auto w-full max-w-[1920px]">
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
             <TanstackProvider>

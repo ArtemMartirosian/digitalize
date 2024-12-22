@@ -1,4 +1,11 @@
+import { Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
+
+export const space = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-space",
+});
 
 export const geistSans = localFont({
   src: "./GeistVF.woff",

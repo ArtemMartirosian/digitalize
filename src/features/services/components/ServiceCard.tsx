@@ -12,7 +12,7 @@ export const ServiceCard = ({ item }: Props) => {
   return (
     <div
       className={cn(
-        "relative flex h-full flex-col items-center justify-between gap-2 overflow-hidden rounded-xl border-2 border-violet-500/30 bg-violet-500/20 p-4 text-center text-foreground shadow-md"
+        "relative flex h-full w-full flex-col items-center justify-between gap-2 overflow-hidden rounded-xl border-2 border-violet-500/30 bg-violet-500/20 p-4 text-center text-foreground shadow-md md:w-64"
       )}
     >
       <div className="flex w-full flex-col gap-2">

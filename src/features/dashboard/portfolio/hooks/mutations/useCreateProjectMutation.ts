@@ -9,7 +9,15 @@ export const useCreateProjectMutation = () => {
 
   return useMutation({
     mutationKey: queryKey,
-    mutationFn: async (values: PortfolioSchema) => await createProject(values),
+    mutationFn: async ({
+      values,
+      file,
+      fileKey,
+    }: {
+      values: PortfolioSchema;
+      file: string;
+      fileKey: string;
+    }) => await createProject(values, file, fileKey),
     onSuccess: async data => {
       if (data.error) {
         throw new Error(data.error);

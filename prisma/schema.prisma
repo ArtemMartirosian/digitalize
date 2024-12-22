@@ -112,6 +112,8 @@ model Portfolio {
   id        String   @id @default(cuid())
   name      String
   url       String
+  image     String
+  imageKey  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

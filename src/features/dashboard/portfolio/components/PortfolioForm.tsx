@@ -8,9 +8,17 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useCreateProjectMutation } from "../hooks/mutations/useCreateProjectMutation";
 import { Loading } from "@/components/Loading";
+import { useState } from "react";
+import { UploadButton } from "@/utils/uploadthing";
+import { toast } from "sonner";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+
+const defaultValues = { image: null, key: null };
 
 export const PortfolioForm = () => {
   const { mutateAsync, isPending } = useCreateProjectMutation();
+  const [file, setFile] = useState<{ image: string | null; key: string | null }>(defaultValues);
 
   const form = useForm({
     resolver: zodResolver(portfolioSchema),
@@ -18,7 +26,19 @@ export const PortfolioForm = () => {
   });
 
   const onSubmit = form.handleSubmit(async (values: PortfolioSchema) => {
-    await mutateAsync(values, { onSuccess: () => form.reset() });
+    if (!file.image || !file.key) {
+      toast.error("Please choose a file");
+      return;
+    }
+    await mutateAsync(
+      { values, file: file.image, fileKey: file.key },
+      {
+        onSuccess: () => {
+          setFile(defaultValues);
+          form.reset();
+        },
+      }
+    );
   });
 
   return (
@@ -48,7 +68,33 @@ export const PortfolioForm = () => {
             </FormItem>
           )}
         />
-        <Button className="w-full" disabled={isPending}>
+        <div className="flex w-full items-start gap-6">
+          <UploadButton
+            disabled={isPending}
+            endpoint="imageUploader"
+            onClientUploadComplete={async res => {
+              const file = res.pop();
+              if (file) {
+                setFile({ image: file.url, key: file.key });
+              }
+            }}
+            onUploadError={error => {
+              toast.error(error.message);
+            }}
+            className="w-fit"
+          />
+          {file.image && (
+            <div
+              className={cn(
+                "relative aspect-video flex-1 border border-muted bg-muted/50 p-2",
+                isPending && "opacity-80"
+              )}
+            >
+              <Image src={file.image} alt={file.image} fill />
+            </div>
+          )}
+        </div>
+        <Button className="w-full" disabled={isPending || !file.image}>
           Submit {isPending && <Loading size={16} />}
         </Button>
       </form>

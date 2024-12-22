@@ -13,7 +13,7 @@ export const DisplayProjects = () => {
   if (!data || !data.length) return <p className="mx-auto">No projects avaliable</p>;
 
   return (
-    <div className="grid w-full grid-cols-minmax-256 gap-2">
+    <div className="grid w-full grid-cols-minmax-256 gap-4">
       <ListItems items={data} render={item => <PortfolioCard key={item.id} item={item} />} />
     </div>
   );

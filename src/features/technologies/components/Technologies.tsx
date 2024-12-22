@@ -8,6 +8,8 @@ import { TechnologyCard } from "./TechnologyCard";
 export const Technologies = async () => {
   const data = await fetchTechnologies();
 
+  if (!data.data || !data.data.length) return null;
+
   return (
     <TechnologiesMotionWrapper>
       <GradientShadow position="left" />

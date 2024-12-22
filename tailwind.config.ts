@@ -14,6 +14,7 @@ const config = {
     extend: {
       fontFamily: {
         "font-quicksand": "--font-quicksand",
+        "font-space": "--font-space",
       },
       colors: {
         background: "hsl(var(--background))",
@@ -95,7 +96,7 @@ const config = {
         "minmax-320": "repeat(auto-fill, minmax(320px, 1fr))",
       },
       screens: {
-        sm: { max: "639px" }
+        sm: { max: "639px" },
       },
     },
   },
